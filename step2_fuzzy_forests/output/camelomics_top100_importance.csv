@@ -1,0 +1,101 @@
+column_name,feature_name,cluster,importance,tissue
+scl_gloms_cluster3_feat20,Sum Distance Transform Luminal Space,3,1.5362475382486644,scl_gloms
+arteries_cluster5_feat2,Sum Distance Transform Nuclei,5,1.5226898249717213,arteries
+tubules_cluster0_feat13,Mean Distance Transform By Eosinophilic Area,0,1.4672231031625074,tubules
+glomeruli_cluster6_feat31,Contrast Eosinophilic,6,1.4448096866636082,glomeruli
+tubules_cluster0_feat16,Max Distance Transform By Eosinophilic Area,0,1.4309903247965907,tubules
+glomeruli_cluster6_feat27,Contrast Nuclei,6,1.3548588552011542,glomeruli
+scl_gloms_cluster3_feat18,Sum Distance Transform By Object Area Luminal Space,3,1.3120792198154496,scl_gloms
+tubules_cluster0_feat27,Contrast Nuclei,0,1.2623825160726703,tubules
+arteries_cluster5_feat24,Max Distance Transform By Object Area Luminal Space,5,1.0788374226833422,arteries
+scl_gloms_cluster7_feat22,Mean Distance Transform By Luminal Space Area,7,1.0512419261111599,scl_gloms
+arteries_cluster5_feat13,Mean Distance Transform By Eosinophilic Area,5,1.0287985851198547,arteries
+tubules_cluster0_feat35,Contrast Luminal Space,0,0.9760400972876635,tubules
+arteries_cluster0_feat48,Mean Nuclear Area,0,0.9495449075763079,arteries
+tubules_cluster0_feat48,Mean Nuclear Area,0,0.8592338018572974,tubules
+scl_gloms_cluster7_feat31,Contrast Eosinophilic,7,0.8283998122320034,scl_gloms
+arteries_cluster0_feat30,Energy Nuclei,0,0.8223849490468422,arteries
+arteries_cluster0_feat18,Sum Distance Transform By Object Area Luminal Space,0,0.8036456166559415,arteries
+tubules_cluster0_feat7,Max Distance Transform By Nuclei Area,0,0.8007856484077486,tubules
+scl_gloms_cluster0_feat35,Contrast Luminal Space,0,0.7911105724768553,scl_gloms
+glomeruli_cluster6_feat35,Contrast Luminal Space,6,0.782746681401123,glomeruli
+arteries_cluster0_feat44,Luminal Space Area,0,0.7686996736624999,arteries
+tubules_cluster0_feat58,Luminal Fraction,0,0.7573445516045471,tubules
+tubules_cluster0_feat6,Max Distance Transform By Object Area Nuclei,0,0.7403057951975583,tubules
+tubules_cluster0_feat50,Total Object Perimeter,0,0.73585978059049,tubules
+tubules_cluster0_feat53,Minor Axis Length,0,0.7239460020763344,tubules
+tubules_cluster5_feat16,Max Distance Transform By Eosinophilic Area,5,0.7234877608108963,tubules
+arteries_cluster0_feat46,Mean Aspect Ratio Nuclei,0,0.7233777170282277,arteries
+tubules_cluster0_feat25,Max Distance Transform By Luminal Space Area,0,0.722412057612041,tubules
+glomeruli_cluster0_feat48,Mean Nuclear Area,0,0.7037760064613614,glomeruli
+scl_gloms_cluster7_feat15,Max Distance Transform By Object Area Eosinophilic,7,0.6994957624669377,scl_gloms
+scl_gloms_cluster7_feat16,Max Distance Transform By Eosinophilic Area,7,0.6637551863764054,scl_gloms
+glomeruli_cluster7_feat11,Sum Distance Transform Eosinophilic,7,0.6312489487272077,glomeruli
+arteries_cluster5_feat21,Mean Distance Transform By Object Area Luminal Space,5,0.6244628736179798,arteries
+tubules_cluster1_feat39,Nuclei Area By Object Area,1,0.6242959712443268,tubules
+tubules_cluster2_feat58,Luminal Fraction,2,0.6046402145043488,tubules
+tubules_cluster6_feat57,Average Cell Thickness,6,0.5928586377696167,tubules
+glomeruli_cluster7_feat57,Mesangial Area,7,0.5745173645542847,glomeruli
+glomeruli_cluster7_feat51,Total Object Aspect Ratio,7,0.568884235800133,glomeruli
+arteries_cluster0_feat32,Homogeneity Eosinophilic,0,0.5539468559678775,arteries
+tubules_cluster6_feat22,Mean Distance Transform By Luminal Space Area,6,0.5499921400342355,tubules
+tubules_cluster0_feat22,Mean Distance Transform By Luminal Space Area,0,0.5469037928246038,tubules
+tubules_cluster5_feat13,Mean Distance Transform By Eosinophilic Area,5,0.5370328160784397,tubules
+tubules_cluster6_feat25,Max Distance Transform By Luminal Space Area,6,0.5364713449218981,tubules
+arteries_cluster0_feat47,Standard Deviation Aspect Ratio Nuclei,0,0.5316239977991225,arteries
+glomeruli_cluster5_feat11,Sum Distance Transform Eosinophilic,5,0.5287597147770078,glomeruli
+scl_gloms_cluster0_feat56,Area,0,0.5106326342270626,scl_gloms
+glomeruli_cluster5_feat57,Mesangial Area,5,0.5100945153383701,glomeruli
+glomeruli_cluster1_feat22,Mean Distance Transform By Luminal Space Area,1,0.5024936820782433,glomeruli
+tubules_cluster1_feat55,Radius (pixel),1,0.4967717803601318,tubules
+scl_gloms_cluster0_feat16,Max Distance Transform By Eosinophilic Area,0,0.49612137642523346,scl_gloms
+scl_gloms_cluster0_feat13,Mean Distance Transform By Eosinophilic Area,0,0.4876800070910087,scl_gloms
+tubules_cluster4_feat16,Max Distance Transform By Eosinophilic Area,4,0.4853296551998185,tubules
+scl_gloms_cluster3_feat43,Luminal Space Area By Object Area,3,0.4832878508048204,scl_gloms
+tubules_cluster4_feat53,Minor Axis Length,4,0.4754410305885657,tubules
+tubules_cluster0_feat44,Luminal Space Area,0,0.46869138742051286,tubules
+arteries_cluster0_feat34,Energy Eosinophilic,0,0.46573985985187416,arteries
+tubules_cluster0_feat47,Standard Deviation Aspect Ratio Nuclei,0,0.4629358566022728,tubules
+tubules_cluster6_feat21,Mean Distance Transform By Object Area Luminal Space,6,0.4608373184301667,tubules
+scl_gloms_cluster6_feat35,Contrast Luminal Space,6,0.4600720547433906,scl_gloms
+glomeruli_cluster1_feat11,Sum Distance Transform Eosinophilic,1,0.4485208383923634,glomeruli
+tubules_cluster6_feat24,Max Distance Transform By Object Area Luminal Space,6,0.4470650444623248,tubules
+glomeruli_cluster7_feat42,Eosinophilic Area,7,0.4463145686125358,glomeruli
+tubules_cluster5_feat22,Mean Distance Transform By Luminal Space Area,5,0.4358336954472582,tubules
+scl_gloms_cluster7_feat25,Max Distance Transform By Luminal Space Area,7,0.4341660227916059,scl_gloms
+arteries_cluster5_feat48,Mean Nuclear Area,5,0.42449078674284846,arteries
+arteries_cluster5_feat18,Sum Distance Transform By Object Area Luminal Space,5,0.41693674331066416,arteries
+arteries_cluster0_feat52,Major Axis Length,0,0.41193044097825887,arteries
+scl_gloms_cluster3_feat44,Luminal Space Area,3,0.4072940991738488,scl_gloms
+tubules_cluster1_feat53,Minor Axis Length,1,0.38159259418626096,tubules
+tubules_cluster1_feat13,Mean Distance Transform By Eosinophilic Area,1,0.3717751845584945,tubules
+tubules_cluster4_feat51,Total Object Aspect Ratio,4,0.3670423705994312,tubules
+arteries_cluster5_feat15,Max Distance Transform By Object Area Eosinophilic,5,0.35862038080070807,arteries
+glomeruli_cluster1_feat21,Mean Distance Transform By Object Area Luminal Space,1,0.35154622945247294,glomeruli
+glomeruli_cluster5_feat42,Eosinophilic Area,5,0.3512109342459383,glomeruli
+arteries_cluster0_feat9,Sum Distance Transform By Object Area Eosinophilic,0,0.35113442284377433,arteries
+glomeruli_cluster0_feat43,Luminal Space Area By Object Area,0,0.3396565395174206,glomeruli
+arteries_cluster5_feat12,Mean Distance Transform By Object Area Eosinophilic,5,0.33300008019574484,arteries
+tubules_cluster2_feat16,Max Distance Transform By Eosinophilic Area,2,0.32809049760025377,tubules
+tubules_cluster2_feat13,Mean Distance Transform By Eosinophilic Area,2,0.3272444185102453,tubules
+scl_gloms_cluster3_feat21,Mean Distance Transform By Object Area Luminal Space,3,0.3242049069666027,scl_gloms
+arteries_cluster0_feat24,Max Distance Transform By Object Area Luminal Space,0,0.3184891488283403,arteries
+tubules_cluster1_feat16,Max Distance Transform By Eosinophilic Area,1,0.3139785736072082,tubules
+glomeruli_cluster5_feat9,Sum Distance Transform By Object Area Eosinophilic,5,0.31386112731849786,glomeruli
+glomeruli_cluster7_feat9,Sum Distance Transform By Object Area Eosinophilic,7,0.3124446940504263,glomeruli
+glomeruli_cluster7_feat41,Eosinophilic Area By Object Area,7,0.29142210643010524,glomeruli
+tubules_cluster0_feat15,Max Distance Transform By Object Area Eosinophilic,0,0.29120839656473163,tubules
+arteries_cluster5_feat25,Max Distance Transform By Luminal Space Area,5,0.28858331680551363,arteries
+tubules_cluster2_feat27,Contrast Nuclei,2,0.2801865629624724,tubules
+tubules_cluster6_feat12,Mean Distance Transform By Object Area Eosinophilic,6,0.27905726219912247,tubules
+glomeruli_cluster1_feat9,Sum Distance Transform By Object Area Eosinophilic,1,0.27880694679228957,glomeruli
+scl_gloms_cluster7_feat13,Mean Distance Transform By Eosinophilic Area,7,0.2784868964400743,scl_gloms
+tubules_cluster4_feat2,Sum Distance Transform Nuclei,4,0.2677748576112419,tubules
+tubules_cluster4_feat13,Mean Distance Transform By Eosinophilic Area,4,0.25680473773772017,tubules
+scl_gloms_cluster7_feat58,Mesangial Fraction,7,0.2523003811266239,scl_gloms
+tubules_cluster1_feat57,Average Cell Thickness,1,0.2515125818040627,tubules
+arteries_cluster5_feat43,Luminal Space Area By Object Area,5,0.25123529942500294,arteries
+glomeruli_cluster7_feat17,Max Distance Transform Eosinophilic,7,0.24307267878086616,glomeruli
+glomeruli_cluster0_feat27,Contrast Nuclei,0,0.24216486968360446,glomeruli
+scl_gloms_cluster7_feat12,Mean Distance Transform By Object Area Eosinophilic,7,0.24141778141701015,scl_gloms
+scl_gloms_cluster6_feat18,Sum Distance Transform By Object Area Luminal Space,6,0.2406291168290785,scl_gloms
