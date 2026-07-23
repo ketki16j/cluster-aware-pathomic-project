@@ -2,10 +2,6 @@
 
 Code used for training and testing cluster-aware machine learning models with donor clinical and pathomic biopsy features to predict kidney transplant recipient outcomes.
 
-**Manuscript in preparation:** *"Cluster-Aware Pathomic Modeling of Procurement Biopsies for Prediction of Post-Transplant Allograft Outcomes"*
-
-**In collaboration with:** Jeremy Rubin's Lab, University of Maryland
-
 ---
 
 ## Overview
