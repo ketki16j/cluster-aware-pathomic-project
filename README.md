@@ -16,6 +16,43 @@ This repository implements a cluster-aware pathomic ML framework for analyzing d
 
 ---
 
+## Quick Start
+
+A single parameterized master script runs the full pipeline:
+
+```bash
+module load R/4.5.0
+
+# Run everything end-to-end (all pipelines, all outcomes, all tissue combos)
+Rscript run_pipeline.R
+
+# Run a specific config: Hierarchical T, DGF only
+Rscript run_pipeline.R --pipeline hier --outcome DGF --tissues T
+
+# Run all naive configs for eGFR
+Rscript run_pipeline.R --pipeline naive --outcome eGFR --tissues all
+
+# Run multiple tissue combos
+Rscript run_pipeline.R --pipeline hier --outcome DGF --tissues T,A,GTAV
+
+# Run only test evaluation (skip training)
+Rscript run_pipeline.R --pipeline all --outcome all --tissues all --step test
+
+# Regenerate figures only
+Rscript run_pipeline.R --step figures
+```
+
+### Parameters
+
+| Parameter | Options | Default | Description |
+|---|---|---|---|
+| `--pipeline` | `hier` \| `global` \| `naive` \| `all` | `all` | Clustering method |
+| `--outcome` | `DGF` \| `eGFR` \| `all` | `all` | Prediction outcome |
+| `--tissues` | `T` \| `G` \| `A` \| `V` \| `GT` \| `GTAV` \| ... \| `all` | `all` | Tissue combination |
+| `--step` | `FF` \| `compreps` \| `test` \| `figures` \| `all` | `all` | Pipeline step to run |
+
+---
+
 ## Pipeline Structure
 
 ```
