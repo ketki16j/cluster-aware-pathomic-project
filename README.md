@@ -1,79 +1,138 @@
-# Cluster-Aware Pathomic Pipeline — Full Reproducible Directory
+# procurement-biopsy-pathomics-ml
+
+Code used for training and testing cluster-aware machine learning models with donor clinical and pathomic biopsy features to predict kidney transplant recipient outcomes.
+
+**Manuscript in preparation:** *"Cluster-Aware Pathomic Modeling of Procurement Biopsies for Prediction of Post-Transplant Allograft Outcomes"*
+
+**In collaboration with:** Jeremy Rubin's Lab, University of Maryland
+
+---
 
 ## Overview
-End-to-end pipeline for cluster-aware procurement biopsy ML analysis.
-Predicts DGF (C-statistic) and 12-month eGFR (MSE) from n=139 transplanted kidneys
-at Coimbra University Hospital (2011-2023).
-Seed: 382025 | Train: n=112 | Test (held-out): n=27
 
-## Pipeline Steps
+This repository implements a cluster-aware pathomic ML framework for analyzing deceased donor procurement biopsies. Rather than averaging morphometric features across all tissue objects (naive approach), we apply unsupervised clustering (global K-means and hierarchical within-patient) per tissue type to capture morphological subpopulation structure. Cluster-specific features are combined with donor clinical variables and passed through Fuzzy Forests feature selection prior to multimodal ML training using the [ComPRePS](https://github.com/jeremysrubin/procurement-biopsy-pathomics-ml) framework.
 
-### Step 1: Clustering (step1_clustering/)
-Build global K-means and hierarchical cluster-averaged tissue data files.
-- Input:  Raw CAMELOMICS features + clinical data + train/test subject IDs
-- Code:
-  * run_hierarchical_clustering.py   → hierarchical within-patient clustering
-  * step6B_prepare_camelomics_data.R → prepare CAMELOMICS feature matrix
-  * build_single_tissue_files.R      → build per-tissue and multi-tissue CSVs
-  * build_2tissue_files.R            → build 2-tissue combination files
-  * build_all_FF_inputs.R            → master script for all FF input files
-  * build_hier_input.R               → hierarchical clustering input builder
-- Output: Renal_Data_hier_*.csv, Renal_Data_naive_*.csv,
-          Renal_Data_cluster_averaged_*.csv (47 files total)
+### Key Results (held-out test set, n=27)
+| Configuration | DGF C-statistic | vs KDPI (C=0.410) |
+|---|---|---|
+| Hierarchical T (cluster-aware) | 0.792 | +93% |
+| Naive GTAV (all-tissue average) | 0.847 | +106% |
 
-### Step 2: Fuzzy Forests Feature Selection (step2_fuzzy_forests/)
-Run Fuzzy Forests on clustered data to select top 100 features per config.
-- Input:  Clustered tissue data files + FF input files (60 files)
-- Code:
-  * run_FF_DGF_{method}_{combo}.R  → FF for DGF (30 configs)
-  * run_FF_eGFR_{method}_{combo}.R → FF for eGFR (30 configs)
-  * build_FF_input_final.R         → build final ComPRePS input files
-  * build_all_FF_inputs.R          → master FF input builder
-  * build_hier_input.R             → hierarchical FF input builder
-- Output: FF_{DGF|eGFR}_{method}_{combo}_top100.csv (69 files)
+---
 
-### Step 3: ComPRePS Bootstrap Training (step3_compreps/)
-100-bootstrap training of RF, Lasso, Ridge, Elastic Net per config.
-- Input:  FF-selected train/test CSVs (90 config subfolders)
-- Code:
-  * run_ComPRePS_{method}_{combo}_FF{outcome}.R → FF pipeline (60 configs)
-  * run_naive_{outcome}_{combo}.R               → naive pipeline (30 configs)
-  * Helper_CV_Functions.R                       → core CV functions
-  * Binary/Continuous_Internal_Validation_Metrics.R → metric computation
-  * Create_Train_Test_Exclusion_Data.R          → data splitting
-  * Model_Saving_and_Test_Performance_Metrics_with_Exclusion.R
-- Output: Bootstrap performance CSVs per config (92 folders)
-- Key results: Hier T DGF C=0.938 (train), Naive GTAV DGF C=0.949 (train)
+## Pipeline Structure
 
-### Step 4: Test Set Evaluation (step4_test_evaluation/)
-Apply trained models to locked held-out test set (n=27).
-- Input:  Train/test CSVs (90 config subfolders)
-- Code:
-  * run_all_test_evaluations.R          → final reproducible evaluation script
-  * original_run_test_evaluation.R      → Jeremy original (9 FF configs)
-  * original_run_test_evaluation_allT.R → Jeremy original (4 naive configs)
-- Output: test_evaluation_summary.csv + 90 per-config prediction files
-- Key results:
-    Hier T DGF C=0.792 vs KDPI C=0.410 (test set)
-    Naive GTAV DGF C=0.847 (test set)
-- Seed: 382025 (single global seed, original configs run first)
+```
+pipeline/
+├── step1_clustering/        ← Global K-means + hierarchical clustering
+├── step2_fuzzy_forests/     ← Fuzzy Forests feature selection (top 100)
+├── step3_compreps/          ← ComPRePS 100-bootstrap ML training
+├── step4_test_evaluation/   ← Held-out test set evaluation (n=27)
+└── step5_figures/           ← Publication figures (elbow, ROC, importance)
+```
 
-### Step 5: Figures (step5_figures/)
-Publication-ready figures for manuscript.
-- Code:
-  * fig4a.R                        → eGFR MSE elbow plots (Fig 4A)
-  * fig5a.R / make_fig5a.R         → DGF C-stat elbow plots (Fig 5A)
-  * FF_impt.R                      → FF importance bar plots (Fig 5B/6B)
-  * roc_curvesonesinglepanelnew.R  → 6-config ROC curves
-  * make_roc_hierT.R               → Hier T single ROC
-- Output: 8 final publication figures (PNG, 200 DPI)
+### Step 1: Clustering
+Builds cluster-averaged tissue data files for 15 tissue combinations (G, T, A, V and all multi-tissue combos) across 3 pipelines:
+- **Global K-means**: cluster across all subjects, average within cluster
+- **Hierarchical**: cluster within each patient, average within cluster  
+- **Naive**: slide-level average across all objects (baseline)
 
-## To reproduce test evaluation from scratch
-  cd step4_test_evaluation/
-  module load R/4.5.0
-  Rscript code/run_all_test_evaluations.R
+Key scripts:
+- `run_hierarchical_clustering.py` — hierarchical within-patient clustering
+- `build_single_tissue_files.R` — build per-tissue combination CSVs
+- `build_all_FF_inputs.R` — master builder for all FF input files
 
-## Validated benchmarks
-  KDPI:            DGF C=0.410  eGFR MSE=328.5
-  Naive GTAV test: DGF C=0.847  eGFR RF MSE=324.0
-  Hier T test:     DGF C=0.792  eGFR RF MSE=347.9 (N=12)
+### Step 2: Fuzzy Forests Feature Selection
+Runs Fuzzy Forests on clustered data to select top 100 features per config (15 combos × 2 methods × 2 outcomes = 60 configs).
+
+Key scripts:
+- `run_FF_{DGF|eGFR}_{method}_{combo}.R` — one script per config
+
+### Step 3: ComPRePS Bootstrap Training
+100-bootstrap training of RF, Lasso, Ridge, and Elastic Net for all 90 configs (45 FF + 45 naive × 2 outcomes).
+
+Key scripts:
+- `run_ComPRePS_{method}_{combo}_FF{outcome}.R` — FF pipeline configs
+- `run_naive_{outcome}_{combo}.R` — naive pipeline configs
+- `Helper_CV_Functions.R` — core cross-validation functions
+
+### Step 4: Test Set Evaluation
+Applies trained models to locked held-out test set (n=27, seed=382025).
+
+Key scripts:
+- `run_all_test_evaluations.R` — **main reproducible evaluation script**
+- `original_run_test_evaluation.R` — Jeremy's original 9-config script (reference)
+
+To reproduce:
+```bash
+module load R/4.5.0
+Rscript pipeline/step4_test_evaluation/code/run_all_test_evaluations.R
+```
+
+### Step 5: Figures
+Publication-ready figures.
+
+| Figure | Script | Description |
+|---|---|---|
+| Fig 4A | `fig4a.R` | eGFR MSE vs N MRMR features (elbow plots) |
+| Fig 5A | `fig5a.R` | DGF C-statistic vs N MRMR features (elbow plots) |
+| Fig 5B/6B | `FF_impt.R` | FF variable importance bar plots |
+| ROC curves | `roc_curvesonesinglepanelnew.R` | DGF ROC curves, held-out test set |
+
+---
+
+## Dependencies
+
+```r
+library(randomForest)
+library(glmnet)
+library(pROC)
+library(fuzzyforest)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+```
+
+Python:
+```
+numpy, pandas, scikit-learn, scipy
+```
+
+---
+
+## Data Availability
+
+Raw data (procurement biopsy WSIs and clinical variables) from Coimbra University Hospital (2011–2023) are not publicly available due to patient privacy restrictions. Processed feature matrices and model outputs are available upon reasonable request.
+
+- **Cohort**: n=139 transplanted kidneys (112 train, 27 held-out test)
+- **Features**: 59 morphometric, textural, and spatial features per tissue object
+- **Tissue types**: Glomeruli (G), Tubules (T), Arteries (A), Arterioles (V)
+- **Outcomes**: Delayed Graft Function (DGF, binary), 12-month eGFR (continuous)
+
+---
+
+## Validated Benchmarks
+
+| Metric | Value |
+|---|---|
+| Random seed | 382025 |
+| KDPI DGF C-statistic (test) | 0.410 |
+| KDPI eGFR MSE (test) | 328.5 |
+| Best cluster-aware DGF (Hier T, test) | 0.792 |
+| Best naive DGF (Naive GTAV, test) | 0.847 |
+
+---
+
+## Related Work
+
+This framework builds on the ComPRePS pipeline:
+
+> Rodrigues L, Paul AS, Rubin J et al. Multimodal ComPRePS: Integrating High-dimensional Procurement Biopsy Pathomics and Clinical Data for Prediction of Post Transplant Allograft Outcomes. *CJASN*, 2026.
+> [GitHub](https://github.com/jeremysrubin/procurement-biopsy-pathomics-ml)
+
+---
+
+## Authors
+
+**Ketki Joshi** — Postdoctoral Associate, Department of Computational Biology, Cornell University  
+In collaboration with the Rubin Lab, University of Maryland

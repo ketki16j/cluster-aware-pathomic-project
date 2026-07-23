@@ -1,0 +1,40 @@
+# Data files — patient data stays on HPC, not in repo
+*.csv
+*.rds
+*.RData
+*.rda
+
+# Large data files
+data/
+results/
+*.png
+*.pdf
+*.pptx
+
+# Logs
+logs/
+*.log
+nohup.out
+
+# Slurm files
+*.slurm
+*.sh
+
+# Temporary R files
+.Rhistory
+.RData
+.Rproj.user/
+*.Rproj
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Keep these despite *.csv rule — none in this repo
+!pipeline/step4_test_evaluation/output/test_evaluation_summary.csv
